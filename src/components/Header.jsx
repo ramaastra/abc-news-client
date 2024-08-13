@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import formatDate from '../utils/formatDate';
+import getCurrentUser from '../utils/getCurrentUser';
 
 function Header() {
+  const [user, setUser] = useState({});
   const [today, setToday] = useState({});
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    const fetchCurrentUser = async () => {
+      const user = await getCurrentUser();
+      setUser(user);
+    };
+    fetchCurrentUser();
+
     const fetchCategories = async () => {
       try {
         const { data: response } = await axios.get('/news/categories');
@@ -69,19 +77,47 @@ function Header() {
           <h1 className="font-playfair font-bold text-4xl">ABC News</h1>
         </a>
 
-        <div className="flex justify-end items-center gap-2">
-          <a
-            href="#"
-            className="border-[1px] border-black px-3 py-2 transition-all hover:opacity-75"
-          >
-            Sign Up
-          </a>
-          <a
-            href="/login"
-            className="border-[1px] border-black px-5 py-2 transition-all bg-black text-white hover:opacity-75"
-          >
-            Login
-          </a>
+        <div className="flex justify-end h-full items-center gap-2">
+          {!user?.id ? (
+            <>
+              <a
+                href="#"
+                className="border-[1px] border-black px-3 py-2 transition-all hover:opacity-75"
+              >
+                Sign Up
+              </a>
+              <a
+                href="/login"
+                className="border-[1px] border-black px-5 py-2 transition-all bg-black text-white hover:opacity-75"
+              >
+                Login
+              </a>
+            </>
+          ) : (
+            <div
+              className="flex justify-center items-center gap-2 pe-4 transition-colors cursor-pointer
+                hover:bg-gray-100 rounded-full"
+            >
+              <div className="flex justify-center items-center bg-black text-white font-bold rounded-full w-9 h-9">
+                <svg
+                  className="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <p className="text-lg">{user.firstName}</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="flex justify-between py-6">
