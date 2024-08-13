@@ -94,7 +94,8 @@ function Header() {
               </a>
             </>
           ) : (
-            <div
+            <a
+              href="/dashboard"
               className="flex justify-center items-center gap-2 pe-4 transition-colors cursor-pointer
                 hover:bg-gray-100 rounded-full"
             >
@@ -116,7 +117,7 @@ function Header() {
                 </svg>
               </div>
               <p className="text-lg">{user.firstName}</p>
-            </div>
+            </a>
           )}
         </div>
       </div>
