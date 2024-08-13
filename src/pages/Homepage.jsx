@@ -22,7 +22,7 @@ function Homepage() {
   ) : (
     <>
       {news.map((data) => (
-        <News data={data} />
+        <News key={data.id} data={data} />
       ))}
       <a
         href="/dashboard/publish"

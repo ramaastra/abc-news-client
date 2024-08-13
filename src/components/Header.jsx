@@ -130,6 +130,7 @@ function Header() {
             categories.map((category) => {
               return (
                 <a
+                  key={category.id}
                   href={`news?category=${category.slug}`}
                   className="transition-opacity opacity-75 hover:opacity-100"
                 >
