@@ -8,6 +8,7 @@ import DashboardLayout from '../layouts/DashboardLayout';
 import NewsListPage from '../pages/dashboard/NewsListPage';
 import CreateNewsPage from '../pages/dashboard/CreateNewsPage';
 import EditNewsPage from '../pages/dashboard/EditNewsPage';
+import NewsPage from '../pages/NewsPage';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Homepage />
+      },
+      {
+        path: 'news',
+        element: <NewsPage />
       }
     ]
   }
