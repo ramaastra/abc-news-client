@@ -25,7 +25,7 @@ function Homepage() {
         <News data={data} />
       ))}
       <a
-        href="/news/publish"
+        href="/dashboard/publish"
         className="fixed bottom-10 right-16 transition-opacity hover:opacity-75 flex items-center gap-1 group"
       >
         <div className="bg-black w-14 h-14 flex justify-center items-center rounded-full transition-transform group-hover:-translate-x-2 group-hover:rotate-90">
