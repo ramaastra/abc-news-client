@@ -3,6 +3,11 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import MainLayout from '../layouts/MainLayout';
 import Homepage from '../pages/Homepage';
+import ProtectedRoute from './ProtectedRoute';
+import DashboardLayout from '../layouts/DashboardLayout';
+import NewsListPage from '../pages/dashboard/NewsListPage';
+import CreateNewsPage from '../pages/dashboard/CreateNewsPage';
+import EditNewsPage from '../pages/dashboard/EditNewsPage';
 
 const router = createBrowserRouter([
   {
@@ -12,6 +17,24 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage />
+  },
+  {
+    path: '/dashboard',
+    element: <ProtectedRoute component={DashboardLayout} />,
+    children: [
+      {
+        index: true,
+        element: <NewsListPage />
+      },
+      {
+        path: 'publish',
+        element: <CreateNewsPage />
+      },
+      {
+        path: 'news/:slug/edit',
+        element: <EditNewsPage />
+      }
+    ]
   },
   {
     path: '/',
