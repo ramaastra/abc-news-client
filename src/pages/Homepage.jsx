@@ -4,12 +4,14 @@ import News from '../components/News';
 
 function Homepage() {
   const [news, setNews] = useState([]);
+  const [latestNews, setLatestNews] = useState({});
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const { data: response } = await axios.get('/news');
         setNews(response.data);
+        setLatestNews(response.data.find(({ pictureUrl }) => pictureUrl));
       } catch (error) {
         console.error(error);
       }
@@ -21,9 +23,28 @@ function Homepage() {
     <p>No news found.</p>
   ) : (
     <>
-      {news.map((data) => (
-        <News key={data.id} data={data} />
-      ))}
+      <div className="grid grid-cols-2">
+        <div>
+          {news.map((data) => (
+            <News key={data.id} data={data} />
+          ))}
+        </div>
+        {latestNews.id && (
+          <div>
+            <img
+              src={latestNews.pictureUrl}
+              alt={latestNews.headline}
+              className="aspect-video 1-full object-cover"
+            />
+            <a href={`/news/${latestNews.slug}`}>
+              <h3 className="font-playfair font-semibold text-4xl mt-3">
+                {latestNews.headline}
+              </h3>
+            </a>
+            <p className="mt-3">{latestNews.content.slice(0, 200) + '...'}</p>
+          </div>
+        )}
+      </div>
       <a
         href="/dashboard/publish"
         className="fixed bottom-10 right-16 transition-opacity hover:opacity-75 flex items-center gap-1 group"

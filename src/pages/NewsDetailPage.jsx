@@ -39,7 +39,7 @@ function NewsDetailPage() {
 
   return (
     <div className="w-1/2">
-      <h1 className="font-playfair text-4xl mb-4">{news.headline}</h1>
+      <h1 className="font-playfair text-4xl mb-4 font-bold">{news.headline}</h1>
       {news.pictureUrl && (
         <img
           src={news.pictureUrl}
