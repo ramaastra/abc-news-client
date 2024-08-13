@@ -9,6 +9,7 @@ import NewsListPage from '../pages/dashboard/NewsListPage';
 import CreateNewsPage from '../pages/dashboard/CreateNewsPage';
 import EditNewsPage from '../pages/dashboard/EditNewsPage';
 import NewsPage from '../pages/NewsPage';
+import NewsDetailPage from '../pages/NewsDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: 'news',
         element: <NewsPage />
+      },
+      {
+        path: 'news/:slug',
+        element: <NewsDetailPage />
       }
     ]
   }

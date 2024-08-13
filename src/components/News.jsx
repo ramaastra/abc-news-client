@@ -14,13 +14,18 @@ function News({ data }) {
         </span>
       </div>
       <a
-        href="news/<%= data.slug  %>"
+        href={`/news/${data.slug}`}
+        target="_blank"
         className="text-2xl font-semibold tracking-tighter transition-opacity hover:opacity-75"
       >
         <h2>{data.headline}</h2>
       </a>
       <p className="opacity-75 my-1">{data.content.slice(0, 40) + '...'}</p>
-      <a href="news/<%= data.slug %>" className="text-indigo-600 underline">
+      <a
+        href={`/news/${data.slug}`}
+        target="_blank"
+        className="text-indigo-600 underline"
+      >
         Continue Reading
       </a>
     </div>
