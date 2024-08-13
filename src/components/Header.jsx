@@ -81,10 +81,10 @@ function Header() {
           {!user?.id ? (
             <>
               <a
-                href="#"
+                href="/register"
                 className="border-[1px] border-black px-3 py-2 transition-all hover:opacity-75"
               >
-                Sign Up
+                Register
               </a>
               <a
                 href="/login"
