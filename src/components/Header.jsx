@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import formatDate from '../utlis/formatDate';
+import formatDate from '../utils/formatDate';
 
 function Header() {
   const [today, setToday] = useState({});
